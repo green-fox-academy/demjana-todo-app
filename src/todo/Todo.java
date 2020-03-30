@@ -10,12 +10,8 @@ public class Todo {
       new PrintUsage();
 
     } else if (args[0].equals("-l")) {
-      tasks= new ReadFile().readFile();
-      if (tasks.size() == 0) {
-        System.out.println("No todos for today! :)");
-      } else {
-        new ListTasks(tasks);
-      }
+      tasks = new ReadFile().readFile();
+      new ListTasks().listTasks(tasks);
 
     } else if (args[0].equals("-a")) {
       new AddNewTask().addNewTask(args);
@@ -23,10 +19,8 @@ public class Todo {
     } else if (args[0].equals("-r")) {
       new RemoveTask().removeTask(args);
 
-
-
     } else if (args[0].equals("-c")) {
-
+      new CheckTask().checkTask(args);
 
     } else {
       System.out.println("Unsupported argument");

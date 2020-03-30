@@ -10,7 +10,7 @@ public class AddNewTask {
     } else {
       String task = Arrays.toString(args);
       List<String> tasks = new ReadFile().readFile();
-      tasks.add(task.substring(5,task.length()-1));
+      tasks.add(task.substring(5, task.length() - 1));
       new WriteFile().writeFile(tasks);
     }
   }
