@@ -5,36 +5,31 @@ import java.util.List;
 public class Todo {
 
   public static void main(String[] args) {
-    String[] acceptedArguments = {"-l", "-a", "-r", "-c"};
-    boolean isTheInputArgOk = false;
+    List<String> tasks;
     if (args.length == 0) {
       new PrintUsage();
-      return;
-    }
 
-    for (String acceptedArgument : acceptedArguments) {
-      if (args[0].equals(acceptedArgument)) {
-        isTheInputArgOk = true;
+    } else if (args[0].equals("-l")) {
+      tasks= new ReadFile().readFile();
+      if (tasks.size() == 0) {
+        System.out.println("No todos for today! :)");
+      } else {
+        new ListTasks(tasks);
       }
-    }
-    if (!isTheInputArgOk) {
+
+    } else if (args[0].equals("-a")) {
+      new AddNewTask().addNewTask(args);
+
+    } else if (args[0].equals("-r")) {
+      new RemoveTask().removeTask(args);
+
+
+
+    } else if (args[0].equals("-c")) {
+
+
+    } else {
       System.out.println("Unsupported argument");
-      return;
     }
-
-    List<String> tasks;
-    ReadFile readFile = new ReadFile();
-    tasks = readFile.readFile();
-
-    if (args[0].equals("-l")){
-      if (tasks.size() == 0){
-        System.out.println("No todos for today! :)"); //ok!
-        return;
-      }
-      new ListTasks(tasks);
-      return;
-    }
-
-
   }
 }
